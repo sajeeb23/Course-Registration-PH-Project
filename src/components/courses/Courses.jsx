@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { BiBookOpen } from 'react-icons/bi';
+import toast, { Toaster } from 'react-hot-toast';
 import Cart from "./cart";
+
 
 const Courses = () => {
 
@@ -16,7 +18,13 @@ const Courses = () => {
 
     },[]);
     const handleSelect = (course) =>{
+        const isExist = selectedCourse.find(item => item.id == course.id);
+        if (isExist){
+            toast.error('Course is already selected!');
+        }
+        else{
         setSelectedCourse([...selectedCourse, course]);
+        }
     }
     
     return (
@@ -44,7 +52,7 @@ const Courses = () => {
            }
         </div>
         <div className="w-96">
-            <Cart selectedCourse={selectedCourse}></Cart>
+            <Cart  selectedCourse={selectedCourse}></Cart>
         </div>
         </div>
     );

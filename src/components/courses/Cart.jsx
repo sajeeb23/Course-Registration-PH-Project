@@ -1,19 +1,28 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 
-const Cart = (props) => {
-    console.log(props.selectedCourse);
+const Cart = ({selectedCourse}) => {
+    
+    console.log(selectedCourse);
+
     return (
-        <div className="w-96">
-            <h1 className="text-4xl font-bold">Credit Hour Remaining {} hr</h1>
+        <div className="w-96 mt-20">
+            <h1 className="text-4xl font-bold text-[#2F80ED] mb-4">Credit Hour Remaining {} hr</h1>
             <hr/>
-            <h1 className="text-4xl font-bold">Course Name</h1>
-                <ol>
-                    <li></li>
-                </ol>
+            <h1 className="text-4xl font-bold my-4">Course Name</h1>
+            <ol style={{ listStyleType: 'decimal' }}>
+                 {selectedCourse.map((course) => (
+                     <li key={course.id} className="text-2xl">
+                     {course.title}
+                     </li>
+                ))}
+            </ol>
+
+
             <hr />
-            <p>Total Credit Hour : </p>
+            <p className="font-bold text-3xl my-3">Total Credit Hour : </p>
             <hr />
-            <p>Total Price :  USD</p>
+            <p className="font-bold text-3xl my-3">Total Price :  USD</p>
         </div>
     );
 };
