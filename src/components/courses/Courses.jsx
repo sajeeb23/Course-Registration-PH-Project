@@ -12,7 +12,7 @@ const Courses = () => {
   const [totalCredit, setTotalCredit] = useState(0);
 
   useEffect(() => {
-    fetch("../../../public/Course.json")
+    fetch("./Course.json")
       .then((res) => res.json())
       .then((data) => setAllCourses(data));
   }, []);
