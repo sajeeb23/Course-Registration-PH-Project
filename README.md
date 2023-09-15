@@ -1,8 +1,7 @@
-# React + Vite
+ <!-- Features -->
+-  You can choose your Course by clicking Select button.
+-  You'll get warning Toast notification while selecting same course multiple times. Toasts are displayed to provide feedback to users when they select a course, and they are informed if a course has already been selected or if they have    reached the credit hour limit.
+-  You can see an overview of your course selections and your progress towards the credit hour limit.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- How did I manage state -->
+I managed state in my project using React `useState` hook. This allows me to declare and update variables to keep track of course data, user selections, remaining credit hours, and the total credit hours in the shopping cart, enabling real-time updates to the user interface.
