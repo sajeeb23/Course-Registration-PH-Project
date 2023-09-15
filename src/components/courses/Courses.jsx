@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { BiBookOpen } from 'react-icons/bi';
-import { Toaster, toast } from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast';
 import Cart from "./cart";
 
 const Courses = () => {
   const [allCourses, setAllCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState([]);
-  const [remaining, setRemaining] = useState([20]);
+  const [remaining, setRemaining] = useState(20);
+  const [totalCredit, setTotalCredit] = useState(0);
 
   useEffect(() => {
     fetch("../../../public/Course.json")
@@ -26,14 +27,15 @@ const Courses = () => {
 
   const handleSelect = (course) => {
     const isExist = selectedCourse.find((item) => item.id === course.id);
-    const totalCredit = calculateTotalCredit(selectedCourse);
+    const currentTotalCredit = calculateTotalCredit(selectedCourse);
 
     if (isExist) {
       toast.error('Course is already selected!');
     } else {
-      if (totalCredit + course.credit <= 20) {
+      if (currentTotalCredit + course.credit <= 20) {
         setSelectedCourse([...selectedCourse, course]);
-        setRemaining(20 - (totalCredit + course.credit));
+        setTotalCredit(currentTotalCredit + course.credit);
+        setRemaining(20 - (currentTotalCredit + course.credit));
         toast.success('Course added to the cart!');
       } else {
         toast.error('Already used 20 credit hours!');
@@ -64,9 +66,9 @@ const Courses = () => {
         ))}
       </div>
       <div className="w-96">
-        <Cart selectedCourse={selectedCourse} remaining={remaining} />
+        <Cart selectedCourse={selectedCourse} remaining={remaining} totalCredit={totalCredit} />
       </div>
-      <Toaster position="top-right" /> 
+      <Toaster position="top-right" />
     </div>
   );
 };
